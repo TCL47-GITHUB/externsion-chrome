@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouTube Link Converter</title>
+    <link
+      rel="stylesheet"
+      href="https://tcl47-github.github.io/maumau-icon/set-1/style.css"
+    />
+    <link rel="stylesheet" href="popup.css" />
+    <script src="popup.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1 class="title">YouTube Link Converter</h1>
+          <i id="detachWindowBtn" class="mm-1 icon1-extern detach-button"></i> 
+      </header>
+
+      <div class="input-group">
+        <input
+          id="youtubeLink"
+          type="text"
+          placeholder="Nhập link YouTube hoặc link nhúng tại đây"
+          class="input-field"
+        />
+        <button id="convertBtn" class="convert-btn">Chuyển đổi</button>
+      </div>
+
+      <!-- <button id="copyBtn" class="copy-btn">
+        Sao chép kết quả
+      </button> -->
+      <div id="notification" class="hidden">Đã sao chép kết quả!</div>
+      <div class="output">
+        <h3 class="mls">
+          Kết quả:
+          <span class="mls-copy" id="copyBtn"></span>
+        </h3>
+        <div class="result">
+          <code id="result"></code>
+        </div>
+      </div>
+      <div>
+        <h3>Xem trước:</h3>
+        <div id="preview" class="preview"></div>
+      </div>
+      <div class="footer">
+        <p class="copyright">
+          Copyright © <span id="currentYear"></span> by
+          <a
+            href="https://www.truongcongly.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Trương Công Lý</a
+          >
+        </p>
+        <img class="avatar" src="assets/img/avatar.jpg" alt="Avatar" />
+      </div>
+    </div>
+  </body>
+</html>
