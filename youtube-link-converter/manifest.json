@@ -15,13 +15,13 @@
   "commands": {
     "open_extension": {
       "suggested_key": {
-        "default": "Ctrl+Shift+1"
+        "default": "Alt + Shift + 1"
       },
       "description": "Open the extension popup"
     },
     "_execute_action": {
       "suggested_key": {
-        "default": "Ctrl+Shift+X"
+        "default": "Alt+1"
       },
       "description": "Activate the extension"
     }
