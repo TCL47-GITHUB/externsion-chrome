@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "YouTube Link Converter",
-  "version": "1.0",
-  "description": "Convert YouTube links into embeddable iframe codes.",
+  "name": "YouTube Link Converter Reponsive",
+  "version": "1.0.1",
+  "description": "Convert YouTube links into embeddable iframe codes supporting responsive design.",
   "icons": {
     "16": "assets/icon.png",
     "48": "assets/icon.png",
