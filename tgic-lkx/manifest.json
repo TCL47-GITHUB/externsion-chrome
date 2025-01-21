@@ -3,7 +3,7 @@
   "name": "TGIC-LKX",
   "version": "1.0",
   "description": "Tích hợp các nút thao tác nhanh",
-  "permissions": ["activeTab", "scripting"],
+  "permissions": ["activeTab", "scripting", "clipboardWrite"],
   "host_permissions": [
     "https://www.thegioiic.com/*",
     "https://admin.linhkienx.com/*"
@@ -18,14 +18,10 @@
   "content_scripts": [
     {
       "matches": [
-        "https://www.thegioiic.com/console-admin/orders*",
-         "https://www.thegioiic.com/console-admin/order-exports*",
-         "https://www.thegioiic.com/console-admin/order-trasheds*",
-         "https://admin.linhkienx.com/orders*",
-         "https://admin.linhkienx.com/order-exports*",
-         "https://admin.linhkienx.com/order-trasheds*"
+        "https://www.thegioiic.com/console-admin/*",
+         "https://admin.linhkienx.com/*"
       ],
-      "js": ["content.js"]
+      "js": ["content.js","copy-content.js"]
     }
   ]
 }

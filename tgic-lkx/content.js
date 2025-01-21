@@ -147,7 +147,7 @@ if (
   // Sử dụng setInterval để kiểm tra và gọi hàm addButtons
   setInterval(() => {
     addButtons();
-  }, 1000); // Kiểm tra mỗi giây (bạn có thể thay đổi thời gian nếu cần)
+  }, 1000); 
 } else if (window.location.href.startsWith('https://admin.linhkienx.com/')) {
 
   function addButtons() {
@@ -292,5 +292,5 @@ if (
   // Use setInterval to check and call addButtons
   setInterval(() => {
     addButtons();
-  }, 1000); // Check every second (you can change the time if needed)
+  }, 1000); 
 }
