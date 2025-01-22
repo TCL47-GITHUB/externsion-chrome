@@ -1,0 +1,14 @@
+{
+    "manifest_version": 3,
+    "name": "Alert Extension",
+    "version": "1.0",
+    "description": "Hiển thị thông báo Xin chào khi truy cập vào đường dẫn cụ thể.",
+    "content_scripts": [
+      {
+        "matches": ["https://www.thegioiic.com/console-admin/*"],
+        "js": ["content.js"]
+      }
+    ],
+    "permissions": []
+  }
+  
