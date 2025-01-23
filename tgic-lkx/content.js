@@ -101,7 +101,7 @@ function addButtonsTgic() {
       callButton.className =
         "display-flex justify-center items-center btn btn-success btn-sm"; // Bootstrap class
       callButton.style.marginLeft = "8px";
-      callButton.title = "Gọi điện thoại";
+      callButton.title = "Gọi điện";
       callButton.innerHTML = '<i class="tgic icon-solid-phone"></i>';
 
       // Nếu số điện thoại không hợp lệ, vô hiệu hóa và làm mờ nút
@@ -133,7 +133,7 @@ function addButtonsTgic() {
         zaloButton.disabled = true;
         zaloButton.style.opacity = "0.35"; // Làm mờ nút
         zaloButton.style.cursor = "not-allowed"; // Thay đổi con trỏ chuột
-        zaloButton.title = "Số điện thoại không hợp lệ";
+        zaloButton.title = "Zalo không hợp lệ";
       } else {
         zaloButton.onclick = () => {
           window.open(`https://zalo.me/${phoneNumber}`, "_blank");
@@ -249,7 +249,7 @@ function addButtonsLkx() {
       callButton.className =
         "display-flex justify-center items-center btn btn-secondary"; // Bootstrap class
       callButton.style.marginLeft = "8px";
-      callButton.title = "Gọi điện thoại";
+      callButton.title = "Gọi điện";
       callButton.innerHTML = '<i class="tgic icon-solid-phone"></i>';
 
       // If phone number is invalid, disable and dim the button
@@ -281,7 +281,7 @@ function addButtonsLkx() {
         zaloButton.disabled = true;
         zaloButton.style.opacity = "0.35"; // Dim the button
         zaloButton.style.cursor = "not-allowed"; // Change cursor
-        zaloButton.title = "Số điện thoại không hợp lệ";
+        zaloButton.title = "Zalo không hợp lệ";
       } else {
         zaloButton.onclick = () => {
           window.open(`https://zalo.me/${phoneNumber}`, "_blank");
@@ -366,14 +366,17 @@ function addButtonsLkx() {
     if (targetElement) {
         // Tạo button
         const button = document.createElement('button');
-        button.textContent = 'Run addButtonsTgic';
+        button.textContent = 'Copy all';
         button.style.marginLeft = '10px';
-        button.style.padding = '5px 10px';
-        button.style.cursor = 'pointer';
-        button.style.border = '1px solid #ccc';
-        button.style.backgroundColor = '#007bff';
-        button.style.color = '#fff';
-        button.style.borderRadius = '4px';
+        // button.style.padding = '5px 10px';
+        // button.style.cursor = 'pointer';
+        // button.style.border = '1px solid #ccc';
+        // button.style.backgroundColor = '#007bff';
+        // button.style.color = '#fff';
+        // button.style.borderRadius = '4px';
+        button.className =
+        "btn-mesage btn-primary";
+        button.title = "Nhấn Window + V để xem các nội dung được sao chép";
   
         // Gắn sự kiện click để chạy hàm addButtonsTgic
         button.addEventListener('click', () => {

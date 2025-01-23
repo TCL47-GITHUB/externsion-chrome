@@ -23,13 +23,35 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   if (
     changeInfo.status === "complete" && // Chỉ chạy khi trang tải xong
     tab.url &&
+    /^https:\/\/www\.thegioiic\.com\/console-admin\/products\/\d+\/edit$/.test(tab.url) // Kiểm tra URL với số bất kỳ
+  ) {
+    // Tiêm file content.js
+    chrome.scripting.executeScript(
+      {
+        target: { tabId: tabId },
+        files: ["copy-content.js"],
+      },
+      () => {
+        // Sau khi tiêm content.js, gọi hàm insertButton
+        chrome.scripting.executeScript({
+          target: { tabId: tabId },
+          func: () => {
+            insertButton();
+          },
+        });
+      }
+    );
+  }
+   else if (
+    changeInfo.status === "complete" && // Chỉ chạy khi trang tải xong
+    tab.url &&
     tab.url.startsWith("https://www.thegioiic.com/console-admin")
   ) {
     // Tiêm file content.js
     chrome.scripting.executeScript(
       {
         target: { tabId: tabId },
-        files: ["content.js", "copy-content.js"],
+        files: ["content.js"],
       },
       () => {
         // Sau khi tiêm content.js, gọi hàm addButtonsTgic lặp lại 2 lần
@@ -38,11 +60,11 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
           func: () => {
             let count = 0; // Khởi tạo bộ đếm
             const maxRepeats = 2; // Số lần lặp tối đa
-            insertButton();
+            // insertButton();
             const intervalId = setInterval(() => {
               if (typeof addButtonsTgic === "function") {
                 addButtonsTgic();
-                
+
                 console.log(`addButtonsTgic đang chạy, lần thứ ${count + 1}`);
               } else {
                 console.error(
@@ -60,8 +82,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
         });
       }
     );
-  }
-  else if (
+  } else if (
     changeInfo.status === "complete" && // Chỉ chạy khi trang tải xong
     tab.url &&
     tab.url.startsWith("https://admin.linhkienx.com/")
