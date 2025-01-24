@@ -21,22 +21,29 @@
 // });
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   if (
-    changeInfo.status === "complete" && // Chỉ chạy khi trang tải xong
+    changeInfo.status === "complete" &&
     tab.url &&
-    /^https:\/\/www\.thegioiic\.com\/console-admin\/products\/\d+\/edit$/.test(tab.url) // Kiểm tra URL với số bất kỳ
+    /^https:\/\/www\.thegioiic\.com\/console-admin\/products\/\d+\/edit$/.test(tab.url) // Kiểm tra URL
   ) {
-    // Tiêm file content.js
+    // Tiêm file copy-content.js mỗi khi trang hoàn tất tải
     chrome.scripting.executeScript(
       {
         target: { tabId: tabId },
         files: ["copy-content.js"],
       },
       () => {
-        // Sau khi tiêm content.js, gọi hàm insertButton
+        console.log("Đã tiêm copy-content.js vào trang.");
+
+        // Gọi trực tiếp hàm insertButton
         chrome.scripting.executeScript({
           target: { tabId: tabId },
           func: () => {
-            insertButton();
+            if (typeof insertButton === "function") {
+              insertButton();
+              console.log("Đã gọi hàm insertButton.");
+            } else {
+              console.error("Hàm insertButton không tồn tại.");
+            }
           },
         });
       }
@@ -64,7 +71,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
             const intervalId = setInterval(() => {
               if (typeof addButtonsTgic === "function") {
                 addButtonsTgic();
-
+                addClassStyleStatus();
                 console.log(`addButtonsTgic đang chạy, lần thứ ${count + 1}`);
               } else {
                 console.error(

@@ -117,6 +117,7 @@ if (
     } else {
       alert("All content has been copied!");
       console.log("All content has been copied!");
+      index = 0; // Reset index sau khi hoàn tất
     }
   }
 
@@ -131,32 +132,26 @@ function insertButton() {
   const targetElement = document.querySelector(".crumb li:last-child a");
 
   if (targetElement) {
-    // Tạo button
-    const button = document.createElement("button");
-    button.textContent = "Copy all";
-    button.style.marginLeft = "10px";
-    // button.style.padding = '5px 10px';
-    // button.style.cursor = 'pointer';
-    // button.style.border = '1px solid #ccc';
-    // button.style.backgroundColor = '#007bff';
-    // button.style.color = '#fff';
-    // button.style.borderRadius = '4px';
-    button.className = "btn-mesage btn-primary";
-    button.title = "Nhấn Window + V để xem các nội dung được sao chép";
+    // Kiểm tra xem nút đã được chèn chưa để tránh chèn trùng
+    if (!document.querySelector(".btn-copy-all")) {
+      // Tạo button
+      const button = document.createElement("button");
+      button.textContent = "Copy all";
+      button.style.marginLeft = "10px";
+      button.className = "btn-copy-all btn-primary";
+      button.title = "Nhấn Window + V để xem các nội dung được sao chép";
 
-    // Gắn sự kiện click để chạy hàm addButtonsTgic
-    button.addEventListener("click", () => {
-      if (typeof addButtonsTgic === "function") {
-        copyNext();
-        console.log("Hàm addButtonsTgic đã được gọi.");
-      } else {
-        console.error("Hàm addButtonsTgic không tồn tại.");
-      }
-    });
+      // Gắn sự kiện click để chạy hàm copyNext
+      button.addEventListener("click", () => {
+        index = 0; // Đặt lại giá trị index về 0
+        copyNext(); // Gọi hàm copyNext để bắt đầu sao chép
+        console.log("Hàm copyNext đã được gọi.");
+      });
 
-    // Chèn button vào sau phần tử được chọn
-    targetElement.parentNode.appendChild(button);
-    console.log("Button đã được chèn vào thành công.");
+      // Chèn button vào sau phần tử được chọn
+      targetElement.parentNode.appendChild(button);
+      console.log("Button đã được chèn vào thành công.");
+    }
   } else {
     console.error("Không tìm thấy phần tử `.crumb li:last-child a`.");
   }
@@ -164,3 +159,5 @@ function insertButton() {
 
 // Gọi hàm chèn button khi trang đã tải
 document.addEventListener("DOMContentLoaded", insertButton);
+
+

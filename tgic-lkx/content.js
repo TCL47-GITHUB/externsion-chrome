@@ -49,6 +49,110 @@ if (
 //     clearInterval(intervalId); // Dừng setInterval sau khi đạt số lần lặp
 //   }
 // }, 1000);
+
+function addClassStyleStatus() {
+  // Tìm chỉ mục của cột "Trạng thái"
+  const table = document.getElementById("table-orders");
+  const headers = table.querySelectorAll("thead th");
+  let statusColumnIndex = -1;
+  let actionColumnIndex = -1;
+
+  // Tìm chỉ mục của cột "Trạng thái" và "Thao tác"
+  headers.forEach((header, index) => {
+    if (header.textContent.trim() === "Trạng thái") {
+      statusColumnIndex = index;
+    }
+    if (header.textContent.trim() === "Thao tác") {
+      actionColumnIndex = index;
+    }
+  });
+  // Nếu tìm thấy cột "Trạng thái", thêm màu nền cho các ô trong cột
+  if (statusColumnIndex !== -1) {
+    const rows = table.querySelectorAll("tbody tr");
+    rows.forEach((row) => {
+      const cells = row.querySelectorAll("td");
+      if (cells[statusColumnIndex]) {
+        // cells[statusColumnIndex].style.backgroundColor = "#f1f1f1";
+      }
+    });
+  }
+  // Nếu tìm thấy cột "Trạng thái"
+  if (statusColumnIndex !== -1) {
+    const rows = table.querySelectorAll("tbody tr");
+    rows.forEach((row) => {
+      const cells = row.querySelectorAll("td");
+      const statusCell = cells[statusColumnIndex];
+
+      if (statusCell) {
+        const firstSpan = statusCell.querySelector(
+          ".display-grid span:first-child"
+        );
+        if (firstSpan && firstSpan.textContent.trim() === "Đã kiểm hàng") {
+          // Thêm class
+          firstSpan.classList.add("btn", "btn-sm");
+
+          // Thêm style
+          firstSpan.style.cssText = `
+           width: fit-content;
+           padding: 0.1rem 0.5rem;
+           border-radius: 999px;
+           font-size: 12px;
+           color:#00813c;
+           background-color: #aeffd1;
+           box-shadow: rgb(79 158 79 / 20%) 0px 50px 100px -20px, 
+                       rgb(47 183 116 / 25%) 0px 30px 60px -30px, 
+                       rgb(0 163 91 / 30%) 0px -2px 6px 0px inset;
+         `;
+        }
+        if (firstSpan && firstSpan.textContent.trim() === "Đang soạn hàng") {
+          // Thêm class
+          firstSpan.classList.add("btn", "btn-sm");
+
+          // Thêm style
+          firstSpan.style.cssText = `
+            width: fit-content;
+            padding: 0.1rem 0.5rem;
+            border-radius: 999px;
+            font-size: 12px;
+            color: rgb(167 91 0);
+            background-color: rgb(255 233 181);
+            box-shadow: rgb(158 123 79 / 10%) 0px 50px 100px -20px, 
+                        rgb(183 172 47 / 15%) 0px 30px 60px -30px, 
+                        rgb(163 116 0 / 20%) 0px -2px 6px 0px inset;
+         `;
+        }
+        if (firstSpan && firstSpan.textContent.trim() === "Đã soạn xong") {
+          // Thêm class
+          firstSpan.classList.add("btn", "btn-sm");
+
+          // Thêm style
+          firstSpan.style.cssText = `
+                width: fit-content;
+                padding: 0.1rem 0.5rem;
+                border-radius: 999px;
+                font-size: 12px;
+                color: rgb(0 64 167);
+                background-color: rgb(181 239 255);
+                box-shadow: rgb(79 116 158 / 10%) 0px 50px 100px -20px, 
+                            rgb(47 139 183 / 15%) 0px 30px 60px -30px, 
+                            rgb(0 93 163 / 20%) 0px -2px 6px 0px inset;
+         `;
+        }
+      }
+    });
+  }
+
+  // Nếu tìm thấy cột "Thao tác", thêm màu nền cho các ô
+  if (actionColumnIndex !== -1) {
+    const rows = table.querySelectorAll("tbody tr");
+    rows.forEach((row) => {
+      const cells = row.querySelectorAll("td");
+      if (cells[actionColumnIndex]) {
+        // cells[actionColumnIndex].style.backgroundColor = "#f1f1f1";
+      }
+    });
+  }
+}
 function addButtonsTgic() {
   let phoneLinks;
 
@@ -59,7 +163,6 @@ function addButtonsTgic() {
     phoneLinks = document.querySelectorAll(
       ".table-list tr td:nth-child(3) .display-grid > i"
     );
-
   } else if (window.location.href.includes("/order-exports")) {
     phoneLinks = document.querySelectorAll(
       ".table-list tr td:nth-child(3) .display-grid i a:last-of-type"
@@ -99,10 +202,15 @@ function addButtonsTgic() {
     if (!buttonContainer.querySelector(".tgic.icon-solid-phone")) {
       const callButton = document.createElement("button");
       callButton.className =
-        "display-flex justify-center items-center btn btn-success btn-sm"; // Bootstrap class
+        "display-flex justify-center items-center btn btn-success"; // Bootstrap class
       callButton.style.marginLeft = "8px";
       callButton.title = "Gọi điện";
       callButton.innerHTML = '<i class="tgic icon-solid-phone"></i>';
+      callButton.style.cssText = `
+          font-size: .7rem;
+          padding: .2rem .4rem;
+          margin-left: 8px
+        `;
 
       // Nếu số điện thoại không hợp lệ, vô hiệu hóa và làm mờ nút
       if (!phoneNumber || !phoneNumber.startsWith("0")) {
@@ -124,9 +232,14 @@ function addButtonsTgic() {
       const zaloButton = document.createElement("button");
       zaloButton.className =
         "display-flex justify-center items-center btn btn-primary btn-sm";
-      zaloButton.style.marginLeft = "8px";
       zaloButton.title = "Mở Zalo";
       zaloButton.innerHTML = '<i class="tgic icon-zalo"></i>';
+      // Thêm style
+      zaloButton.style.cssText = `
+          font-size: .7rem;
+          padding: .2rem .4rem;
+          margin-left: 8px
+        `;
 
       // Nếu số điện thoại không hợp lệ, vô hiệu hóa và làm mờ nút
       if (!phoneNumber || !phoneNumber.startsWith("0")) {
@@ -149,10 +262,10 @@ function addButtonsTgic() {
     emailLinks = document.querySelectorAll(
       ".table-list tr td:nth-child(3) .display-grid span:nth-child(2)"
     );
-  }else{
+  } else {
     emailLinks = document.querySelectorAll(
-     ".table-list tr td:nth-child(3) .display-grid a:nth-child(2)"
-   );
+      ".table-list tr td:nth-child(3) .display-grid a:nth-child(2)"
+    );
   }
 
   emailLinks.forEach((emailLink) => {
@@ -173,9 +286,14 @@ function addButtonsTgic() {
       const emailButton = document.createElement("button");
       emailButton.className =
         "display-flex justify-center items-center btn btn-danger btn-sm";
-      emailButton.style.marginLeft = "8px";
+      // emailButton.style.marginLeft = "8px";
       emailButton.title = "Gửi Email";
       emailButton.innerHTML = '<i class="tgic icon-mail-solid"></i>';
+      emailButton.style.cssText = `
+          font-size: .7rem;
+          padding: .2rem .4rem;
+          margin-left: 8px
+        `;
 
       // Nếu email không hợp lệ, vô hiệu hóa và làm mờ nút
       if (!emailAddress || !emailAddress.includes("@")) {
@@ -193,7 +311,6 @@ function addButtonsTgic() {
     }
   });
 }
-
 
 function addButtonsLkx() {
   let phoneLinks;
@@ -356,46 +473,3 @@ function addButtonsLkx() {
 //   }
 //   alert("Xin chào");
 // }
-
-
-  // Hàm chèn button
-  function insertButton() {
-    // Tìm phần tử `.crumb li:last-child a`
-    const targetElement = document.querySelector('.crumb li:last-child a');
-  
-    if (targetElement) {
-        // Tạo button
-        const button = document.createElement('button');
-        button.textContent = 'Copy all';
-        button.style.marginLeft = '10px';
-        // button.style.padding = '5px 10px';
-        // button.style.cursor = 'pointer';
-        // button.style.border = '1px solid #ccc';
-        // button.style.backgroundColor = '#007bff';
-        // button.style.color = '#fff';
-        // button.style.borderRadius = '4px';
-        button.className =
-        "btn-mesage btn-primary";
-        button.title = "Nhấn Window + V để xem các nội dung được sao chép";
-  
-        // Gắn sự kiện click để chạy hàm addButtonsTgic
-        button.addEventListener('click', () => {
-            if (typeof addButtonsTgic === 'function') {
-              copyNext();
-                console.log('Hàm addButtonsTgic đã được gọi.');
-            } else {
-                console.error('Hàm addButtonsTgic không tồn tại.');
-            }
-        });
-  
-        // Chèn button vào sau phần tử được chọn
-        targetElement.parentNode.appendChild(button);
-        console.log('Button đã được chèn vào thành công.');
-    } else {
-        console.error('Không tìm thấy phần tử `.crumb li:last-child a`.');
-    }
-  }
-  
-  // Gọi hàm chèn button khi trang đã tải
-  document.addEventListener('DOMContentLoaded', insertButton);
-  
