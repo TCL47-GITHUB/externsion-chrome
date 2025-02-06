@@ -99,6 +99,7 @@ function addClassStyleStatus() {
            font-size: 12px;
            color:#00813c;
            background-color: #aeffd1;
+           white-space: nowrap;
            box-shadow: rgb(79 158 79 / 20%) 0px 50px 100px -20px, 
                        rgb(47 183 116 / 25%) 0px 30px 60px -30px, 
                        rgb(0 163 91 / 30%) 0px -2px 6px 0px inset;
@@ -116,6 +117,7 @@ function addClassStyleStatus() {
             font-size: 12px;
             color: rgb(167 91 0);
             background-color: rgb(255 233 181);
+            white-space: nowrap;
             box-shadow: rgb(158 123 79 / 10%) 0px 50px 100px -20px, 
                         rgb(183 172 47 / 15%) 0px 30px 60px -30px, 
                         rgb(163 116 0 / 20%) 0px -2px 6px 0px inset;
@@ -133,6 +135,7 @@ function addClassStyleStatus() {
                 font-size: 12px;
                 color: rgb(0 64 167);
                 background-color: rgb(181 239 255);
+                white-space: nowrap;
                 box-shadow: rgb(79 116 158 / 10%) 0px 50px 100px -20px, 
                             rgb(47 139 183 / 15%) 0px 30px 60px -30px, 
                             rgb(0 93 163 / 20%) 0px -2px 6px 0px inset;
@@ -177,6 +180,8 @@ function addButtonsTgic() {
   } else {
     console.log("Failed to inject CSS icon into the page");
   }
+
+ 
   phoneLinks.forEach((phoneLink) => {
     let phoneNumber = phoneLink.textContent.trim();
 
@@ -197,35 +202,35 @@ function addButtonsTgic() {
       buttonContainer.className = "display-flex flex-justify-end";
       phoneLink.parentElement.appendChild(buttonContainer);
     }
+    // //Phone
+    // // Kiểm tra nếu nút Call chưa tồn tại
+    // if (!buttonContainer.querySelector(".tgic.icon-solid-phone")) {
+    //   const callButton = document.createElement("button");
+    //   callButton.className =
+    //     "display-flex justify-center items-center btn btn-success"; // Bootstrap class
+    //   callButton.style.marginLeft = "8px";
+    //   callButton.title = "Gọi điện";
+    //   callButton.innerHTML = '<i class="tgic icon-solid-phone"></i>';
+    //   callButton.style.cssText = `
+    //       font-size: .7rem;
+    //       padding: .2rem .4rem;
+    //       margin-left: 8px
+    //     `;
 
-    // Kiểm tra nếu nút Call chưa tồn tại
-    if (!buttonContainer.querySelector(".tgic.icon-solid-phone")) {
-      const callButton = document.createElement("button");
-      callButton.className =
-        "display-flex justify-center items-center btn btn-success"; // Bootstrap class
-      callButton.style.marginLeft = "8px";
-      callButton.title = "Gọi điện";
-      callButton.innerHTML = '<i class="tgic icon-solid-phone"></i>';
-      callButton.style.cssText = `
-          font-size: .7rem;
-          padding: .2rem .4rem;
-          margin-left: 8px
-        `;
+    //   // Nếu số điện thoại không hợp lệ, vô hiệu hóa và làm mờ nút
+    //   if (!phoneNumber || !phoneNumber.startsWith("0")) {
+    //     callButton.disabled = true;
+    //     callButton.style.opacity = "0.35"; // Làm mờ nút
+    //     callButton.style.cursor = "not-allowed"; // Thay đổi con trỏ chuột
+    //     callButton.title = "Số điện thoại không hợp lệ";
+    //   } else {
+    //     callButton.onclick = () => {
+    //       window.location.href = `tel:${phoneNumber}`;
+    //     };
+    //   }
 
-      // Nếu số điện thoại không hợp lệ, vô hiệu hóa và làm mờ nút
-      if (!phoneNumber || !phoneNumber.startsWith("0")) {
-        callButton.disabled = true;
-        callButton.style.opacity = "0.35"; // Làm mờ nút
-        callButton.style.cursor = "not-allowed"; // Thay đổi con trỏ chuột
-        callButton.title = "Số điện thoại không hợp lệ";
-      } else {
-        callButton.onclick = () => {
-          window.location.href = `tel:${phoneNumber}`;
-        };
-      }
-
-      buttonContainer.appendChild(callButton);
-    }
+    //   buttonContainer.appendChild(callButton);
+    // }
 
     // Kiểm tra nếu nút Zalo chưa tồn tại
     if (!buttonContainer.querySelector(".tgic.icon-zalo")) {
@@ -257,59 +262,61 @@ function addButtonsTgic() {
     }
   });
 
-  // Lấy danh sách email
-  if (window.location.href.includes("/orders/collection/waiting")) {
-    emailLinks = document.querySelectorAll(
-      ".table-list tr td:nth-child(3) .display-grid span:nth-child(2)"
-    );
-  } else {
-    emailLinks = document.querySelectorAll(
-      ".table-list tr td:nth-child(3) .display-grid a:nth-child(2)"
-    );
-  }
 
-  emailLinks.forEach((emailLink) => {
-    let emailAddress = emailLink.textContent.trim(); // Lấy nội dung text
+//   // Email
+//   // Lấy danh sách email
+//   if (window.location.href.includes("/orders/collection/waiting")) {
+//     emailLinks = document.querySelectorAll(
+//       ".table-list tr td:nth-child(3) .display-grid span:nth-child(2)"
+//     );
+//   } else {
+//     emailLinks = document.querySelectorAll(
+//       ".table-list tr td:nth-child(3) .display-grid a:nth-child(2)"
+//     );
+//   }
 
-    // Tạo hoặc tìm container nút
-    let emailButtonContainer = emailLink.parentElement.querySelector(
-      ".display-flex.flex-justify-end"
-    );
-    if (!emailButtonContainer) {
-      emailButtonContainer = document.createElement("div");
-      emailButtonContainer.className = "display-flex flex-justify-end";
-      emailLink.parentElement.appendChild(emailButtonContainer);
-    }
+//   emailLinks.forEach((emailLink) => {
+//     let emailAddress = emailLink.textContent.trim(); // Lấy nội dung text
 
-    // Kiểm tra nếu nút Email chưa tồn tại
-    if (!emailButtonContainer.querySelector(".tgic.icon-mail-solid")) {
-      const emailButton = document.createElement("button");
-      emailButton.className =
-        "display-flex justify-center items-center btn btn-danger btn-sm";
-      // emailButton.style.marginLeft = "8px";
-      emailButton.title = "Gửi Email";
-      emailButton.innerHTML = '<i class="tgic icon-mail-solid"></i>';
-      emailButton.style.cssText = `
-          font-size: .7rem;
-          padding: .2rem .4rem;
-          margin-left: 8px
-        `;
+//     // Tạo hoặc tìm container nút
+//     let emailButtonContainer = emailLink.parentElement.querySelector(
+//       ".display-flex.flex-justify-end"
+//     );
+//     if (!emailButtonContainer) {
+//       emailButtonContainer = document.createElement("div");
+//       emailButtonContainer.className = "display-flex flex-justify-end";
+//       emailLink.parentElement.appendChild(emailButtonContainer);
+//     }
 
-      // Nếu email không hợp lệ, vô hiệu hóa và làm mờ nút
-      if (!emailAddress || !emailAddress.includes("@")) {
-        emailButton.disabled = true;
-        emailButton.style.opacity = "0.35"; // Làm mờ nút
-        emailButton.style.cursor = "not-allowed"; // Thay đổi con trỏ chuột
-        emailButton.title = "Email không hợp lệ";
-      } else {
-        emailButton.onclick = () => {
-          window.location.href = `mailto:${emailAddress}`;
-        };
-      }
+//     // Kiểm tra nếu nút Email chưa tồn tại
+//     if (!emailButtonContainer.querySelector(".tgic.icon-mail-solid")) {
+//       const emailButton = document.createElement("button");
+//       emailButton.className =
+//         "display-flex justify-center items-center btn btn-danger btn-sm";
+//       // emailButton.style.marginLeft = "8px";
+//       emailButton.title = "Gửi Email";
+//       emailButton.innerHTML = '<i class="tgic icon-mail-solid"></i>';
+//       emailButton.style.cssText = `
+//           font-size: .7rem;
+//           padding: .2rem .4rem;
+//           margin-left: 8px
+//         `;
 
-      emailButtonContainer.appendChild(emailButton);
-    }
-  });
+//       // Nếu email không hợp lệ, vô hiệu hóa và làm mờ nút
+//       if (!emailAddress || !emailAddress.includes("@")) {
+//         emailButton.disabled = true;
+//         emailButton.style.opacity = "0.35"; // Làm mờ nút
+//         emailButton.style.cursor = "not-allowed"; // Thay đổi con trỏ chuột
+//         emailButton.title = "Email không hợp lệ";
+//       } else {
+//         emailButton.onclick = () => {
+//           window.location.href = `mailto:${emailAddress}`;
+//         };
+//       }
+
+//       emailButtonContainer.appendChild(emailButton);
+//     }
+//   });
 }
 
 function addButtonsLkx() {
@@ -473,3 +480,5 @@ function addButtonsLkx() {
 //   }
 //   alert("Xin chào");
 // }
+
+chrome.runtime.sendMessage({ action: "clickTabEditContent" });
