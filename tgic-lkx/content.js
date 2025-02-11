@@ -94,7 +94,7 @@ function addClassStyleStatus() {
           // Thêm style
           firstSpan.style.cssText = `
            width: fit-content;
-           padding: 0.1rem 0.5rem;
+           padding: 0.16rem 0.4rem;
            border-radius: 999px;
            font-size: 12px;
            color:#00813c;
@@ -112,15 +112,15 @@ function addClassStyleStatus() {
           // Thêm style
           firstSpan.style.cssText = `
             width: fit-content;
-            padding: 0.1rem 0.5rem;
+            padding: 0.16rem 0.4rem;
             border-radius: 999px;
             font-size: 12px;
-            color: rgb(167 91 0);
+            color: rgb(183 66 0);
             background-color: rgb(255 233 181);
             white-space: nowrap;
             box-shadow: rgb(158 123 79 / 10%) 0px 50px 100px -20px, 
                         rgb(183 172 47 / 15%) 0px 30px 60px -30px, 
-                        rgb(163 116 0 / 20%) 0px -2px 6px 0px inset;
+                        rgb(163 116 0 / 20%)  0px -2px 6px 0px inset;
          `;
         }
         if (firstSpan && firstSpan.textContent.trim() === "Đã soạn xong") {
@@ -130,7 +130,7 @@ function addClassStyleStatus() {
           // Thêm style
           firstSpan.style.cssText = `
                 width: fit-content;
-                padding: 0.1rem 0.5rem;
+                padding: 0.16rem 0.4rem;
                 border-radius: 999px;
                 font-size: 12px;
                 color: rgb(0 64 167);
