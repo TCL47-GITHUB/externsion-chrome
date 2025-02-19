@@ -94,11 +94,11 @@ function addClassStyleStatus() {
           // Thêm style
           firstSpan.style.cssText = `
            width: fit-content;
-           padding: 0.16rem 0.4rem;
-           border-radius: 999px;
-           font-size: 12px;
-           color:#00813c;
-           background-color: #aeffd1;
+    padding: 0.1rem 0.4rem;
+    border-radius: 999px;
+    font-size: 11px;
+           color: #fff;
+           background-color: #14984c;
            white-space: nowrap;
            box-shadow: rgb(79 158 79 / 20%) 0px 50px 100px -20px, 
                        rgb(47 183 116 / 25%) 0px 30px 60px -30px, 
@@ -112,11 +112,11 @@ function addClassStyleStatus() {
           // Thêm style
           firstSpan.style.cssText = `
             width: fit-content;
-            padding: 0.16rem 0.4rem;
-            border-radius: 999px;
-            font-size: 12px;
-            color: rgb(183 66 0);
-            background-color: rgb(255 233 181);
+    padding: 0.1rem 0.4rem;
+    border-radius: 999px;
+    font-size: 11px;
+            color: #fff;
+            background-color: #fa7925;
             white-space: nowrap;
             box-shadow: rgb(158 123 79 / 10%) 0px 50px 100px -20px, 
                         rgb(183 172 47 / 15%) 0px 30px 60px -30px, 
@@ -130,11 +130,11 @@ function addClassStyleStatus() {
           // Thêm style
           firstSpan.style.cssText = `
                 width: fit-content;
-                padding: 0.16rem 0.4rem;
-                border-radius: 999px;
-                font-size: 12px;
-                color: rgb(0 64 167);
-                background-color: rgb(181 239 255);
+    padding: 0.1rem 0.4rem;
+    border-radius: 999px;
+    font-size: 11px;
+    color: #fff;
+    background-color: #0077df;
                 white-space: nowrap;
                 box-shadow: rgb(79 116 158 / 10%) 0px 50px 100px -20px, 
                             rgb(47 139 183 / 15%) 0px 30px 60px -30px, 
@@ -233,33 +233,33 @@ function addButtonsTgic() {
     // }
 
     // Kiểm tra nếu nút Zalo chưa tồn tại
-    if (!buttonContainer.querySelector(".tgic.icon-zalo")) {
-      const zaloButton = document.createElement("button");
-      zaloButton.className =
-        "display-flex justify-center items-center btn btn-primary btn-sm";
-      zaloButton.title = "Mở Zalo";
-      zaloButton.innerHTML = '<i class="tgic icon-zalo"></i>';
-      // Thêm style
-      zaloButton.style.cssText = `
-          font-size: .7rem;
-          padding: .2rem .4rem;
-          margin-left: 8px
-        `;
+    // if (!buttonContainer.querySelector(".tgic.icon-zalo")) {
+    //   const zaloButton = document.createElement("button");
+    //   zaloButton.className =
+    //     "display-flex justify-center items-center btn btn-primary btn-sm";
+    //   zaloButton.title = "Mở Zalo";
+    //   zaloButton.innerHTML = '<i class="tgic icon-zalo"></i>';
+    //   // Thêm style
+    //   zaloButton.style.cssText = `
+    //       font-size: .7rem;
+    //       padding: .2rem .4rem;
+    //       margin-left: 8px
+    //     `;
 
-      // Nếu số điện thoại không hợp lệ, vô hiệu hóa và làm mờ nút
-      if (!phoneNumber || !phoneNumber.startsWith("0")) {
-        zaloButton.disabled = true;
-        zaloButton.style.opacity = "0.35"; // Làm mờ nút
-        zaloButton.style.cursor = "not-allowed"; // Thay đổi con trỏ chuột
-        zaloButton.title = "Zalo không hợp lệ";
-      } else {
-        zaloButton.onclick = () => {
-          window.open(`https://zalo.me/${phoneNumber}`, "_blank");
-        };
-      }
+    //   // Nếu số điện thoại không hợp lệ, vô hiệu hóa và làm mờ nút
+    //   if (!phoneNumber || !phoneNumber.startsWith("0")) {
+    //     zaloButton.disabled = true;
+    //     zaloButton.style.opacity = "0.35"; // Làm mờ nút
+    //     zaloButton.style.cursor = "not-allowed"; // Thay đổi con trỏ chuột
+    //     zaloButton.title = "Zalo không hợp lệ";
+    //   } else {
+    //     zaloButton.onclick = () => {
+    //       window.open(`https://zalo.me/${phoneNumber}`, "_blank");
+    //     };
+    //   }
 
-      buttonContainer.appendChild(zaloButton);
-    }
+    //   buttonContainer.appendChild(zaloButton);
+    // }
   });
 
 
