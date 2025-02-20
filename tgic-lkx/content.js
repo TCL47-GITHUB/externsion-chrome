@@ -10,46 +10,6 @@ if (
   document.head.appendChild(linkElement);
 }
 
-// // Kiểm tra nếu tài liệu đã sẵn sàng
-// if (document.readyState === "loading") {
-//   // Nếu tài liệu chưa sẵn sàng, đợi sự kiện DOMContentLoaded
-//   document.addEventListener("DOMContentLoaded", () => {
-//     addButtonsTgic();
-//   });
-// } else {
-//   // Nếu tài liệu đã sẵn sàng, hiển thị ngay lập tức
-//   addButtonsTgic();
-// }
-
-// // Lắng nghe sự kiện DOMContentLoaded để chạy addButtons
-// document.addEventListener("DOMContentLoaded", () => {
-//   addButtonsTgic();
-// });
-
-// // Theo dõi thay đổi trong DOM và gọi lại addButtons nếu cần
-// const observer = new MutationObserver(() => {
-//   addButtonsTgic();
-// });
-
-// observer.observe(document.body, { childList: true, subtree: true });
-
-// // Sử dụng setInterval để kiểm tra và gọi hàm addButtons
-// setInterval(() => {
-//   addButtonsTgic();
-// }, 1000);
-
-// let count = 0;
-// const maxRepeats = 5; // Số lần lặp tối đa
-
-// const intervalId = setInterval(() => {
-//   addButtonsTgic();
-//   count++;
-
-//   if (count >= maxRepeats) {
-//     clearInterval(intervalId); // Dừng setInterval sau khi đạt số lần lặp
-//   }
-// }, 1000);
-
 function addClassStyleStatus() {
   // Tìm chỉ mục của cột "Trạng thái"
   const table = document.getElementById("table-orders");
@@ -458,27 +418,5 @@ function addButtonsLkx() {
   });
 }
 
-// // Kiểm tra nếu tài liệu đã sẵn sàng
-// if (document.readyState === "loading") {
-//   // Nếu tài liệu chưa sẵn sàng, đợi sự kiện DOMContentLoaded
-//   document.addEventListener("DOMContentLoaded", () => {
-//     if (window.location.href.startsWith('https://www.thegioiic.com/console-admin/')) {
-//       addButtonsTgic();
-//     }
-//     else if (window.location.href.startsWith('https://admin.linhkienx.com/')) {
-//       addButtonsLkx();
-//     }
-//     alert("Xin chào");
-//   });
-// } else {
-//   // Nếu tài liệu đã sẵn sàng, hiển thị ngay lập tức
-//   if (window.location.href.startsWith('https://www.thegioiic.com/console-admin/')) {
-//     addButtonsTgic();
-//   }
-//   else if (window.location.href.startsWith('https://admin.linhkienx.com/')) {
-//     addButtonsLkx();
-//   }
-//   alert("Xin chào");
-// }
 
 chrome.runtime.sendMessage({ action: "clickTabEditContent" });
